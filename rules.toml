@@ -1,0 +1,117 @@
+[paths]
+downloads = "~/Downloads"
+sorted_base = "~/Downloads/_sorted"
+review = "~/Downloads/_inbox_review"
+trash_candidate = "~/Downloads/_trash_candidate"
+log_file = "~/Library/Logs/downloads-cleaner.log"
+
+[safety]
+min_age_seconds = 120
+dry_run = false
+direct_delete = false
+skip_hidden_files = true
+skip_directories = true
+max_file_size_mb = 10240
+
+[behavior]
+scan_recursive = false
+case_insensitive_extension = true
+create_target_dirs = true
+conflict_strategy = "rename"
+fallback_target = "review"
+
+[incomplete_downloads]
+extensions = [
+  "crdownload",
+  "download",
+  "part",
+  "tmp",
+  "opdownload"
+]
+filename_patterns = [
+  "*.download",
+  "*.crdownload",
+  "*.part",
+  "*.tmp",
+  ".com.google.Chrome.*",
+  ".org.chromium.Chromium.*"
+]
+
+[[rules]]
+name = "screenshots"
+target = "images/screenshots"
+filename_patterns = [
+  "Screenshot*",
+  "截屏*",
+  "屏幕截图*"
+]
+extensions = ["png", "jpg", "jpeg"]
+
+[[rules]]
+name = "images"
+target = "images"
+extensions = ["jpg", "jpeg", "png", "webp", "gif", "heic", "svg", "avif"]
+
+[[rules]]
+name = "pdfs"
+target = "pdfs"
+extensions = ["pdf"]
+
+[[rules]]
+name = "documents"
+target = "documents"
+extensions = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "md", "csv", "rtf", "pages", "numbers", "key"]
+
+[[rules]]
+name = "archives"
+target = "archives"
+extensions = ["zip", "rar", "7z", "tar", "gz", "bz2", "xz"]
+
+[[rules]]
+name = "installers"
+target = "installers"
+extensions = ["dmg", "pkg", "iso"]
+
+[[rules]]
+name = "media"
+target = "media"
+extensions = ["mp4", "mov", "avi", "mkv", "webm", "mp3", "wav", "flac", "m4a"]
+
+[[rules]]
+name = "code"
+target = "code"
+extensions = ["js", "jsx", "ts", "tsx", "py", "go", "rs", "java", "c", "cc", "cpp", "h", "hpp", "json", "yaml", "yml", "toml", "sql", "html", "css", "scss"]
+
+[[rules]]
+name = "fonts"
+target = "fonts"
+extensions = ["ttf", "otf", "woff", "woff2"]
+
+[[rules]]
+name = "torrents"
+target = "torrents"
+extensions = ["torrent"]
+
+[[cleanup]]
+name = "old_installers"
+source = "installers"
+older_than_days = 14
+target = "trash_candidate"
+
+[[cleanup]]
+name = "old_archives"
+source = "archives"
+older_than_days = 30
+target = "trash_candidate"
+
+[[cleanup]]
+name = "old_torrents"
+source = "torrents"
+older_than_days = 30
+target = "trash_candidate"
+
+[[cleanup]]
+name = "old_review"
+source = "review"
+older_than_days = 30
+target = "trash_candidate"

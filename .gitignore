@@ -1,0 +1,14 @@
+.venv/
+HANDOFF.md
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+*.out
+*.err
+/dist/
+/build/
+*.egg-info/
